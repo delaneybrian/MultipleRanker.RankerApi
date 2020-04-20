@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultipleRanker.RankerApi.Host", "MultipleRanker.RankerApi.Host\MultipleRanker.RankerApi.Host.csproj", "{887ED2F3-1BE6-4EEB-A6BB-E5EF45D6BDC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleRanker.RankerApi.Infrastructure", "MultipleRanker.RankerApi.Infrastructure\MultipleRanker.RankerApi.Infrastructure.csproj", "{9CF3A9E5-6AB6-44C1-A83A-ACCD24253AAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultipleRanker.RankerApi.Infrastructure", "MultipleRanker.RankerApi.Infrastructure\MultipleRanker.RankerApi.Infrastructure.csproj", "{9CF3A9E5-6AB6-44C1-A83A-ACCD24253AAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleRanker.RankerApi.Interfaces", "MultipleRanker.RankerApi.Interfaces\MultipleRanker.RankerApi.Interfaces.csproj", "{27E9DD57-FBD1-4227-852E-6E95C6753CFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultipleRanker.RankerApi.Interfaces", "MultipleRanker.RankerApi.Interfaces\MultipleRanker.RankerApi.Interfaces.csproj", "{27E9DD57-FBD1-4227-852E-6E95C6753CFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleRanker.RankerApi.Application", "MultipleRanker.RankerApi.Application\MultipleRanker.RankerApi.Application.csproj", "{65ACAC94-9894-432D-8C1A-24FAF50731F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleRanker.RankerApi.Contracts", "MultipleRanker.RankerApi.Contracts\MultipleRanker.RankerApi.Contracts.csproj", "{F7496C70-921B-417D-A7BA-9DC1D0DBAA92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{27E9DD57-FBD1-4227-852E-6E95C6753CFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27E9DD57-FBD1-4227-852E-6E95C6753CFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27E9DD57-FBD1-4227-852E-6E95C6753CFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65ACAC94-9894-432D-8C1A-24FAF50731F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65ACAC94-9894-432D-8C1A-24FAF50731F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65ACAC94-9894-432D-8C1A-24FAF50731F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65ACAC94-9894-432D-8C1A-24FAF50731F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7496C70-921B-417D-A7BA-9DC1D0DBAA92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7496C70-921B-417D-A7BA-9DC1D0DBAA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7496C70-921B-417D-A7BA-9DC1D0DBAA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7496C70-921B-417D-A7BA-9DC1D0DBAA92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

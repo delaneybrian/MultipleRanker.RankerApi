@@ -5,16 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="MediatR" Version="8.0.1" />
+    <PackageReference Include="MongoDB.Bson" Version="2.10.3" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.3" />
+    <PackageReference Include="MultipleRanker.Contracts" Version="1.0.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.0.0" />
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MultipleRanker.RankerApi.Contracts\MultipleRanker.RankerApi.Contracts.csproj" />
     <ProjectReference Include="..\MultipleRanker.RankerApi.Interfaces\MultipleRanker.RankerApi.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Persistance\Mongo\" />
   </ItemGroup>
 
 </Project>
