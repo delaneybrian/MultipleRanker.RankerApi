@@ -1,4 +1,6 @@
-﻿using Autofac;
+﻿using System.Collections.Generic;
+using Autofac;
+using MultipleRanker.Contracts.Messages;
 using MultipleRanker.RankerApi.Infrastructure.Messaging;
 using MultipleRanker.RankerApi.Interfaces;
 
@@ -16,12 +18,21 @@ namespace MultipleRanker.RankerApi.Host.Infastructure.IoC
             builder
                 .RegisterType<RabbitMQMessageSubscriber>()
                 .As<IMessageSubscriber>()
+                .WithParameter(
+                    "subscribedTo",
+                    new List<string>
+                    {
+                        typeof(RatingsGenerated).FullName
+                    }.ToArray())
                 .SingleInstance();
 
             builder
                 .RegisterType<MediatRDispatcher>()
-                .As<IMessageDispatcher>()
-                .SingleInstance();
+                .As<IMessageDispatcher>();
+
+            builder
+                .RegisterType<SystemJsonSerializer>()
+                .As<ISerializer>();
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
+using MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo;
+using MultipleRanker.RankerApi.Interfaces;
 
 namespace MultipleRanker.RankerApi.Host.Infastructure.IoC
 {
@@ -10,7 +8,10 @@ namespace MultipleRanker.RankerApi.Host.Infastructure.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
+            builder
+                .RegisterType<MongoRatingsRepository>()
+                .As<IRatingsRepository>()
+                .SingleInstance();
         }
     }
 }

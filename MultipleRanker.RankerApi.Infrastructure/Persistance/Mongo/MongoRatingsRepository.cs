@@ -24,6 +24,19 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
             _ratingsCollection = database.GetCollection<RatingsEntity>("ratings");
         }
 
+        public async Task AddRatingBoard(Guid id)
+        {
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         public async Task AddRating(Guid id, Rating rating)
         {
             try

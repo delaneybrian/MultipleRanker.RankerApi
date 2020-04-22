@@ -1,20 +1,28 @@
-using System;
-using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MultipleRanker.RankerApi.Host.Infastructure.IoC;
+using MultipleRanker.RankerApi.Host.Services;
 
 namespace MultipleRanker.RankerApi.Host
 {
     public class Startup
     {
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            var container = Bootstrapper.Bootstrap(services);
+            services.AddControllers();
 
-            return new AutofacServiceProvider(container);
+            services.AddHostedService<MessageConsumerService>();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ApplicationModule());
+            builder.RegisterModule(new MessagingModule());
+            builder.RegisterModule(new MediatorModule());
+            builder.RegisterModule(new InfrastructureModule());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

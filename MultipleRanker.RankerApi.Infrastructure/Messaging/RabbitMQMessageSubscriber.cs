@@ -25,7 +25,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Messaging
             IMessageDispatcher messageDispatcher,
             ISerializer serializer)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() {HostName = "localhost"};
             _connection = factory.CreateConnection();
 
             _subscribedTo = subscribedTo;
@@ -77,4 +77,5 @@ namespace MultipleRanker.RankerApi.Infrastructure.Messaging
                 Console.ReadKey();
             }
         }
+    }
 }

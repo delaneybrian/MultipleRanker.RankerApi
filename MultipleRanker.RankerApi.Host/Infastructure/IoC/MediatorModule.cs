@@ -20,7 +20,9 @@ namespace MultipleRanker.RankerApi.Host.Infastructure.IoC
                 return t => c.Resolve(t);
             });
 
-            builder.RegisterAssemblyTypes(Assembly.Load("MultipleRanker.RankerApi.Application")).AsImplementedInterfaces();
+            builder
+                .RegisterAssemblyTypes(Assembly.Load("MultipleRanker.RankerApi.Application"))
+                .AsImplementedInterfaces();
         }
     }
 }

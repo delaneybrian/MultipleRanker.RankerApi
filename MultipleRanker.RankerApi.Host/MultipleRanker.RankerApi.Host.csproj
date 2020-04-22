@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MultipleRanker.RankerApi.Application\MultipleRanker.RankerApi.Application.csproj" />
     <ProjectReference Include="..\MultipleRanker.RankerApi.Infrastructure\MultipleRanker.RankerApi.Infrastructure.csproj" />
     <ProjectReference Include="..\MultipleRanker.RankerApi.Interfaces\MultipleRanker.RankerApi.Interfaces.csproj" />
   </ItemGroup>

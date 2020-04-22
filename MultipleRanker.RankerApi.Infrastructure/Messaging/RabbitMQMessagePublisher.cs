@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using MultipleRanker.Contracts;
 using MultipleRanker.RankerApi.Interfaces;
 using RabbitMQ.Client;
 

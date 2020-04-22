@@ -23,9 +23,10 @@ namespace MultipleRanker.RankerApi.Host.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateRatingBoard(
-            [FromQuery(Name = "id")] Guid id,
             [FromQuery(Name = "name")] string name)
         {
+            var id = Guid.NewGuid();
+
             var correlationId = Guid.NewGuid();
 
             var createRatingBoard = new CreateRatingBoard
@@ -36,10 +37,11 @@ namespace MultipleRanker.RankerApi.Host.Controllers
 
             _messagePublisher.Publish(createRatingBoard, correlationId);
 
-            return Created(new Uri("http://www.google.com"), null);
+            return Created(new Uri($@"https://www.localhost:44362/api/ratingboard?ratingBoardId={id}"), null);
         }
 
         [HttpPost]
+        [Route("addparticipant")]
         public async Task<IActionResult> AddParticipantToRatingBoard(
             [FromQuery(Name = "ratingBoardId")] Guid ratingBoardId,
             [FromQuery(Name = "participantId")] Guid participantId,
@@ -57,10 +59,11 @@ namespace MultipleRanker.RankerApi.Host.Controllers
 
             _messagePublisher.Publish(addParticipantToRatingBoard, correlationId);
 
-            return Created(new Uri("http://www.google.com"), null);
+            return Created(new Uri("http://www.localhost:44362/api/ratingboard?ratingBoardId"), null);
         }
 
         [HttpPost]
+        [Route("generate")]
         public async Task<IActionResult> GenerateRatingsForRatingBoard(
             [FromQuery(Name = "ratingBoardId")] Guid ratingBoardId)
         {
@@ -78,6 +81,7 @@ namespace MultipleRanker.RankerApi.Host.Controllers
         }
 
         [HttpGet]
+        [Route("latest")]
         public async Task<IActionResult> GetLatestRatings(
             [FromQuery(Name = "ratingBoardId")] Guid ratingBoardId)
         {

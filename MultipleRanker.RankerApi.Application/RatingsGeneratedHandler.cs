@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -22,10 +23,18 @@ namespace MultipleRanker.RankerApi.Application
             //todo move to extension method
             var rating = new Rating
             {
-                e
+                Id = Guid.NewGuid(),
+                ParticipantRatingEntities = request
+                    .ParticipantRatings
+                    .Select(x => new ParticipantRating
+                    {
+                        Id = x.ParticipantId,
+                        Rating = x.Rating
+                    })
+                    .ToList()
             };
 
-            await _ratingsRepository.AddRating(request.RatingBoardId, )
+            await _ratingsRepository.AddRating(request.RatingBoardId, rating);
         }
     }
 }

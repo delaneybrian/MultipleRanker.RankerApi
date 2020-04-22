@@ -32,7 +32,7 @@ namespace MultipleRanker.RankerApi.Host.Controllers
                 ParticipantScores = participantScores
             };
 
-            _messagePublisher.Publish(participantScores, correlationId);
+            _messagePublisher.Publish(matchUpCompleted, correlationId);
 
             //todo this is clearly not correct!
             return Created(new Uri("http://www.google.com"), null);
