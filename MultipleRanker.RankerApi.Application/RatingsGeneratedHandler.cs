@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
 using MultipleRanker.Contracts.Messages;
 using MultipleRanker.RankerApi.Contracts;
 using MultipleRanker.RankerApi.Interfaces;
 
 namespace MultipleRanker.RankerApi.Application
 {
-    public class RatingsGeneratedHandler : AsyncRequestHandler<RatingsGenerated>
+    public class RatingsGeneratedHandler : IHandler<RatingsGenerated>
     {
         private readonly IRatingsRepository _ratingsRepository;
 
@@ -18,13 +16,13 @@ namespace MultipleRanker.RankerApi.Application
             _ratingsRepository = ratingsRepository;
         }
 
-        protected override async Task Handle(RatingsGenerated request, CancellationToken cancellationToken)
+        public async Task HandleAsync(RatingsGenerated evt)
         {
             //todo move to extension method
             var rating = new Rating
             {
                 Id = Guid.NewGuid(),
-                ParticipantRatingEntities = request
+                ParticipantRatings = evt
                     .ParticipantRatings
                     .Select(x => new ParticipantRating
                     {
@@ -34,7 +32,7 @@ namespace MultipleRanker.RankerApi.Application
                     .ToList()
             };
 
-            await _ratingsRepository.AddRating(request.RatingBoardId, rating);
+            await _ratingsRepository.AddRating(evt.RatingBoardId, rating);
         }
     }
 }

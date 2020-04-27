@@ -6,10 +6,12 @@ namespace MultipleRanker.RankerApi.Interfaces
 {
     public interface IRatingsRepository
     {
-        Task AddRating(Guid id, Rating rating);
+        Task AddRatingBoard(Guid ratingBoardId);
 
-        Task<Rating> GetLatestRating(Guid id);
+        Task AddRating(Guid ratingBoardId, Rating rating);
 
-        Task<Ratings> GetAllRatings(Guid id);
+        Task<Rating> GetLatestRating(Guid ratingBoardId);
+
+        Task<Ratings> GetAllRatings(Guid ratingBoardId);
     }
 }

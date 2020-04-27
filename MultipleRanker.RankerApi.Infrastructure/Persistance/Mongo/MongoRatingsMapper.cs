@@ -19,6 +19,10 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 cfg.CreateMap<RatingEntity, Rating>();
 
                 cfg.CreateMap<Rating, RatingEntity>();
+
+                cfg.CreateMap<ParticipantRatingEntity, ParticipantRating>();
+
+                cfg.CreateMap<ParticipantRating, ParticipantRatingEntity>();
             });
 
             config.AssertConfigurationIsValid();

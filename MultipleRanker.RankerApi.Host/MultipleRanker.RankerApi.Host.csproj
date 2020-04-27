@@ -7,13 +7,23 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="5.1.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="MultipleRanker.Contracts" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.1.4" />
+    <PackageReference Include="MultipleRanker.Contracts" Version="1.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.3.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.3.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.3.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MultipleRanker.RankerApi.Application\MultipleRanker.RankerApi.Application.csproj" />
     <ProjectReference Include="..\MultipleRanker.RankerApi.Infrastructure\MultipleRanker.RankerApi.Infrastructure.csproj" />
     <ProjectReference Include="..\MultipleRanker.RankerApi.Interfaces\MultipleRanker.RankerApi.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infastructure\Middleware\" />
   </ItemGroup>
 
 </Project>

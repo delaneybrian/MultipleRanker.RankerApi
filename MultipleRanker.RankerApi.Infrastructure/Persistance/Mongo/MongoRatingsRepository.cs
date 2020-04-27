@@ -24,11 +24,17 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
             _ratingsCollection = database.GetCollection<RatingsEntity>("ratings");
         }
 
-        public async Task AddRatingBoard(Guid id)
+        public async Task AddRatingBoard(Guid ratingBoardId)
         {
+            var entity = new RatingsEntity
+            {
+                Id = ratingBoardId.ToString(),
+                PreviousRatings = new List<RatingEntity>()
+            };
+
             try
             {
-
+                await _ratingsCollection.InsertOneAsync(entity);
             }
             catch (Exception e)
             {
@@ -46,7 +52,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 var updateDefinitionBuilder = new UpdateDefinitionBuilder<RatingsEntity>();
 
                 await _ratingsCollection.FindOneAndUpdateAsync(
-                    filterDefinitionBuilder.Eq(x => x.Id, id),
+                    filterDefinitionBuilder.Eq(x => Guid.Parse(x.Id), id),
                     updateDefinitionBuilder.Push(x => x.PreviousRatings, rating.ToRatingEntity()));
             }
             catch (Exception e)
@@ -56,7 +62,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
             }
         }
 
-        public async Task<Rating> GetLatestRating(Guid id)
+        public async Task<Rating> GetLatestRating(Guid ratingBoardId)
         {
             try
             {
@@ -65,11 +71,11 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 var filterDefinitionBuilder = new FilterDefinitionBuilder<RatingsEntity>();
 
                 var ratingsEntityCursor = await _ratingsCollection
-                    .FindAsync(filterDefinitionBuilder.Eq(x => x.Id, id));
+                    .FindAsync(filterDefinitionBuilder.Eq(x => Guid.Parse(x.Id), ratingBoardId));
 
                 await ratingsEntityCursor.ForEachAsync(re => ratingEntities.Add(re));
 
-                var ratingEntity = ratingEntities.Single(x => x.Id == id);
+                var ratingEntity = ratingEntities.Single(x => x.Id == ratingBoardId.ToString());
 
                 return ratingEntity
                     .PreviousRatings
@@ -84,7 +90,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
             }
         }
 
-        public async Task<Ratings> GetAllRatings(Guid id)
+        public async Task<Ratings> GetAllRatings(Guid ratingBoardId)
         {
             try
             {
@@ -93,11 +99,11 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 var filterDefinitionBuilder = new FilterDefinitionBuilder<RatingsEntity>();
 
                 var ratingsEntityCursor = await _ratingsCollection
-                    .FindAsync(filterDefinitionBuilder.Eq(x => x.Id, id));
+                    .FindAsync(filterDefinitionBuilder.Eq(x => Guid.Parse(x.Id), ratingBoardId));
 
                 await ratingsEntityCursor.ForEachAsync(re => ratingEntities.Add(re));
 
-                var ratingEntity = ratingEntities.Single(x => x.Id == id);
+                var ratingEntity = ratingEntities.Single(x => x.Id == ratingBoardId.ToString());
 
                 return ratingEntity.ToRatings();
             }

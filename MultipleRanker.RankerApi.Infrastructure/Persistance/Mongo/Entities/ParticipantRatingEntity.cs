@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo.Entities
@@ -9,7 +8,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo.Entities
     {
         [BsonId]
         [DataMember]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [DataMember]
         public double Rating { get; set; }

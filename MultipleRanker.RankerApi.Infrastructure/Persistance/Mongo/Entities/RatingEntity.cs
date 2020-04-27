@@ -10,12 +10,12 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo.Entities
     {
         [BsonId]
         [DataMember]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [DataMember]
         public DateTime CalculatedAtUtc { get; set; }
 
         [DataMember]
-        public ICollection<ParticipantRatingEntity> ParticipantRatingEntities { get; set; }
+        public ICollection<ParticipantRatingEntity> ParticipantRatings { get; set; }
     }
 }

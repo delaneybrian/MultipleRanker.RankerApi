@@ -14,6 +14,6 @@ namespace MultipleRanker.RankerApi.Contracts
         public DateTime CalculatedAtUtc { get; set; }
 
         [DataMember]
-        public ICollection<ParticipantRating> ParticipantRatingEntities { get; set; }
+        public ICollection<ParticipantRating> ParticipantRatings { get; set; }
     }
 }

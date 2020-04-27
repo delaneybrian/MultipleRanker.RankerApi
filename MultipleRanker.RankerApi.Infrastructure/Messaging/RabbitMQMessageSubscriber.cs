@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
-using MediatR;
-using MultipleRanker.Contracts;
+using MultipleRanker.Messaging.Contracts;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using MultipleRanker.RankerApi.Interfaces;
@@ -61,11 +59,9 @@ namespace MultipleRanker.RankerApi.Infrastructure.Messaging
 
                     var type = Type.GetType(message.AssemblyQualifiedName);
 
-                    var messageContent = Encoding.UTF8.GetString(message.Content.ToArray());
+                    var data = _serializer.Deserialize(type, message.Content);
 
-                    var obj = _serializer.Deserialize(type, messageContent) as IRequest;
-
-                    _messageDispatcher.DispatchMessage(obj);
+                    _messageDispatcher.DispatchMessage(data);
                 };
 
                 channel.BasicConsume(

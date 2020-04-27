@@ -7,6 +7,8 @@ using MultipleRanker.RankerApi.Interfaces;
 
 namespace MultipleRanker.RankerApi.Host.Controllers
 {
+    [ApiController]
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     public class RatingBoardController : Controller
     {
