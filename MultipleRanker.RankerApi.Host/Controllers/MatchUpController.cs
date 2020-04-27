@@ -21,7 +21,7 @@ namespace MultipleRanker.RankerApi.Host.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Something(
+        public async Task<IActionResult> MatchUpCompleted(
             [FromQuery] Guid rankingBoardId,
             [FromBody] ICollection<MatchUpParticipantScore> participantScores)
         {

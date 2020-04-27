@@ -52,7 +52,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 var updateDefinitionBuilder = new UpdateDefinitionBuilder<RatingsEntity>();
 
                 await _ratingsCollection.FindOneAndUpdateAsync(
-                    filterDefinitionBuilder.Eq(x => Guid.Parse(x.Id), id),
+                    filterDefinitionBuilder.Eq(x => x.Id, id.ToString()),
                     updateDefinitionBuilder.Push(x => x.PreviousRatings, rating.ToRatingEntity()));
             }
             catch (Exception e)

@@ -22,6 +22,7 @@ namespace MultipleRanker.RankerApi.Application
             var rating = new Rating
             {
                 Id = Guid.NewGuid(),
+                CalculatedAtUtc = evt.CalculatedAtUtc,
                 ParticipantRatings = evt
                     .ParticipantRatings
                     .Select(x => new ParticipantRating
