@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MultipleRanker.RankerApi.Contracts;
-using MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo.Entities;
 
 namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
 {
@@ -12,17 +11,29 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<RatingsEntity, Ratings>();
+                cfg.CreateMap<RatingBoardEntity, RatingBoard>();
 
-                cfg.CreateMap<Ratings, RatingsEntity>();
+                cfg.CreateMap<RatingBoard, RatingBoardEntity>();
 
-                cfg.CreateMap<RatingEntity, Rating>();
+                cfg.CreateMap<RatingListEntity, RatingList>();
 
-                cfg.CreateMap<Rating, RatingEntity>();
+                cfg.CreateMap<RatingList, RatingListEntity>();
+
+                cfg.CreateMap<HistoricalRatingsEntity, HistoricalRatings>();
+
+                cfg.CreateMap<HistoricalRatings, HistoricalRatingsEntity>();
 
                 cfg.CreateMap<ParticipantRatingEntity, ParticipantRating>();
 
                 cfg.CreateMap<ParticipantRating, ParticipantRatingEntity>();
+
+                cfg.CreateMap<UserEntity, User>();
+                
+                cfg.CreateMap<User, UserEntity>();
+
+                cfg.CreateMap<ParticipantEntity, Participant>();
+
+                cfg.CreateMap<Participant, ParticipantEntity>();
             });
 
             config.AssertConfigurationIsValid();
@@ -30,24 +41,34 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
             _mapper = config.CreateMapper();
         }
 
-        internal static RatingsEntity ToRatingsEntity(this Ratings ratings)
+        internal static UserEntity ToUserEntity(this User user)
         {
-            return _mapper.Map<RatingsEntity>(ratings);
+            return _mapper.Map<UserEntity>(user);
         }
 
-        internal static Ratings ToRatings(this RatingsEntity ratingsEntity)
+        internal static User ToUser(this UserEntity userEntity)
         {
-            return _mapper.Map<Ratings>(ratingsEntity);
+            return _mapper.Map<User>(userEntity);
         }
 
-        internal static RatingEntity ToRatingEntity(this Rating rating)
+        internal static ParticipantRatingEntity ToParticipantRatingEntity(this ParticipantRating participantRating)
         {
-            return _mapper.Map<RatingEntity>(rating);
+            return _mapper.Map<ParticipantRatingEntity>(participantRating);
         }
 
-        internal static Rating ToRating(this RatingEntity ratingEntity)
+        internal static ParticipantRating ToParticipantRating(this ParticipantRatingEntity participantRatingEntity)
         {
-            return _mapper.Map<Rating>(ratingEntity);
+            return _mapper.Map<ParticipantRating>(participantRatingEntity);
+        }
+
+        internal static HistoricalRatingsEntity ToHistoricalRatingsEntity(this HistoricalRatings historicalRatings)
+        {
+            return _mapper.Map<HistoricalRatingsEntity>(historicalRatings);
+        }
+
+        internal static HistoricalRatings ToHistoricalRatings(this HistoricalRatingsEntity historicalRatingsEntity)
+        {
+            return _mapper.Map<HistoricalRatings>(historicalRatingsEntity);
         }
     }
 }

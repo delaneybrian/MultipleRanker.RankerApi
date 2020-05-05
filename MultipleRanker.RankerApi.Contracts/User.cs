@@ -5,12 +5,18 @@ using System.Runtime.Serialization;
 namespace MultipleRanker.RankerApi.Contracts
 {
     [DataContract]
-    public class Ratings
+    public class User
     {
         [DataMember]
         public Guid Id { get; set; }
 
         [DataMember]
-        public ICollection<Rating> PreviousRatings { get; set; }
+        public string Name { get; set; }
+
+        [DataMember]
+        public ICollection<Guid> ParticipantIds { get; set; }
+
+        [DataMember]
+        public ICollection<Guid> RatingBoardIds { get; set; }
     }
 }

@@ -8,10 +8,10 @@ namespace MultipleRanker.RankerApi.Interfaces
     {
         Task AddRatingBoard(Guid ratingBoardId);
 
-        Task AddRating(Guid ratingBoardId, Rating rating);
+        Task AddRatingBoard(Guid ratingBoardId, RatingBoard ratingBoard);
 
-        Task<Rating> GetLatestRating(Guid ratingBoardId);
+        Task<RatingList> GetLatestRating(Guid ratingBoardId);
 
-        Task<Ratings> GetAllRatings(Guid ratingBoardId);
+        Task<RatingList> GetAllRatings(Guid ratingBoardId);
     }
 }

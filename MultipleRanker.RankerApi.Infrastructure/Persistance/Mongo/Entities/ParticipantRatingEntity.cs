@@ -1,14 +1,12 @@
 ﻿using System.Runtime.Serialization;
-using MongoDB.Bson.Serialization.Attributes;
 
-namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo.Entities
+namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
 {
     [DataContract]
     public class ParticipantRatingEntity
     {
-        [BsonId]
         [DataMember]
-        public string Id { get; set; }
+        public string ParticipantId { get; set; }
 
         [DataMember]
         public double Rating { get; set; }

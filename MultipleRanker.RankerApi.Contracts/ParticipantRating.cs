@@ -7,7 +7,7 @@ namespace MultipleRanker.RankerApi.Contracts
     public class ParticipantRating
     {
         [DataMember]
-        public Guid Id { get; set; }
+        public Guid ParticipantId { get; set; }
 
         [DataMember]
         public double Rating { get; set; }
