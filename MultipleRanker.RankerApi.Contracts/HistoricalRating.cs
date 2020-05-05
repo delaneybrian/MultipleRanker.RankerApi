@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace MultipleRanker.RankerApi.Contracts
 {
     [DataContract]
-    public class HistoricalRatings
+    public class HistoricalRating
     {
         [DataMember]
         public Guid Id { get; set; }
@@ -15,6 +15,12 @@ namespace MultipleRanker.RankerApi.Contracts
 
         [DataMember]
         public TriggerType TriggerType { get; set; }
+
+        [DataMember]
+        public Guid RatingBoardId { get; set; }
+
+        [DataMember]
+        public Guid RatingListId { get; set; }
 
         [DataMember]
         public ICollection<ParticipantRating> ParticipantRatings { get; set; }

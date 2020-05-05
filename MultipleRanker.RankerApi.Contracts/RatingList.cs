@@ -20,7 +20,7 @@ namespace MultipleRanker.RankerApi.Contracts
         public RatingAggregationType RatingAggregation { get; set; }
 
         [DataMember]
-        public ICollection<HistoricalRatings> HistoricalRatings { get; set; }
+        public HistoricalRating LatestRating { get; set; }
     }
 }
 

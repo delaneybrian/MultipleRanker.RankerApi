@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using MultipleRanker.RankerApi.Contracts;
 using MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo;
 using NUnit.Framework;
@@ -74,10 +73,7 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                     CreatedOnUtc = _createdOnUtc,
                     RatingType = ratingType,
                     RatingAggregation = ratingAggregationType,
-                    HistoricalRatings = new List<HistoricalRatingsEntity>
-                    {
-                        new HistoricalRatingsEntity()
-                    }
+                    LatestRating = new HistoricalRatingsEntity()
                 };
 
                 return this;
@@ -93,10 +89,7 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                     CreatedOnUtc = _createdOnUtc,
                     RatingType = ratingType,
                     RatingAggregation = ratingAggregationType,
-                    HistoricalRatings = new List<HistoricalRatings>
-                    {
-                        new HistoricalRatings()
-                    }
+                    LatestRating = new HistoricalRating()
                 };
 
                 return this;
@@ -122,7 +115,6 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
             {
                 Assert.AreEqual(_createdOnUtc, _ratingListEntity.CreatedOnUtc);
                 Assert.AreEqual(_ratingListIdGuid.ToString(), _ratingListEntity.Id);
-                Assert.AreEqual(1, _ratingListEntity.HistoricalRatings.Count);
                 Assert.AreEqual(expectedRatingType, _ratingListEntity.RatingType);
                 Assert.AreEqual(expectedRatingAggregationType, _ratingListEntity.RatingAggregation);
 
@@ -135,7 +127,6 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
             {
                 Assert.AreEqual(_createdOnUtc, _ratingList.CreatedOnUtc);
                 Assert.AreEqual(Guid.Parse(_ratingListIdString), _ratingList.Id);
-                Assert.AreEqual(1, _ratingList.HistoricalRatings.Count);
                 Assert.AreEqual(expectedRatingType, _ratingList.RatingType);
                 Assert.AreEqual(expectedRatingAggregationType, _ratingList.RatingAggregation);
 

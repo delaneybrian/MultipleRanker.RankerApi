@@ -5,11 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="MediatR" Version="8.0.1" />
     <PackageReference Include="MultipleRanker.Contracts" Version="1.5.0" />
+    <PackageReference Include="Optional" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MultipleRanker.RankerApi.Definitions\MultipleRanker.RankerApi.Definitions.csproj" />
     <ProjectReference Include="..\MultipleRanker.RankerApi.Interfaces\MultipleRanker.RankerApi.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MessageHandlers\" />
   </ItemGroup>
 
 </Project>

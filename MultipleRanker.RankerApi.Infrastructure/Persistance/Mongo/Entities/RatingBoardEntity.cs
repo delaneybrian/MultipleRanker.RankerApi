@@ -28,7 +28,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
         public ICollection<RatingListEntity> RatingLists { get; set; }
 
         [DataMember]
-        public ICollection<ParticipantEntity> ParticipantEntities { get; set; }
+        public ICollection<ParticipantEntity> Participants { get; set; }
 
         //[DataMember]
         //public ICollection<ResultEntity> AppliedResults { get; set; }

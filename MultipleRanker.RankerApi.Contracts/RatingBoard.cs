@@ -26,6 +26,6 @@ namespace MultipleRanker.RankerApi.Contracts
         public ICollection<RatingList> RatingLists { get; set; }
 
         [DataMember]
-        public ICollection<Participant> ParticipantEntities { get; set; }
+        public ICollection<Participant> Participants { get; set; }
     }
 }

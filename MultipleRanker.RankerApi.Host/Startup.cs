@@ -29,9 +29,17 @@ namespace MultipleRanker.RankerApi.Host
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new ApplicationModule());
-            builder.RegisterModule(new MessagingModule());
-            builder.RegisterModule(new InfrastructureModule());
+            builder
+                .RegisterModule(new ApplicationModule());
+
+            builder
+                .RegisterModule(new MessagingModule());
+
+            builder
+                .RegisterModule(new InfrastructureModule());
+
+            builder
+                .RegisterModule(new MediatorModule());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

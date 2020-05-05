@@ -18,6 +18,12 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
         [DataMember]
         public TriggerType TriggerType { get; set; }
 
+        [DataMember] 
+        public string RatingListId { get; set; }
+
+        [DataMember]
+        public string RatingBoardId { get; set; }
+
         [DataMember]
         public ICollection<ParticipantRatingEntity> ParticipantRatings { get; set; }
     }

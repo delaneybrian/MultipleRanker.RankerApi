@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -22,6 +21,6 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
         public RatingAggregationType RatingAggregation { get; set; }
 
         [DataMember]
-        public ICollection<HistoricalRatingsEntity> HistoricalRatings { get; set; }
+        public HistoricalRatingsEntity LatestRating { get; set; }
     }
 }

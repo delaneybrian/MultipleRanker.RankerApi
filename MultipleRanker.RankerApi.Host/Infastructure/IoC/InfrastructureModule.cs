@@ -9,8 +9,18 @@ namespace MultipleRanker.RankerApi.Host.Infastructure.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterType<MongoRatingsRepository>()
-                .As<IRatingsRepository>()
+                .RegisterType<MongoRatingBoardRepository>()
+                .As<IRatingBoardRepository>()
+                .SingleInstance();
+
+            builder
+                .RegisterType<MongoHistoricalRatingRepository>()
+                .As<IHistoricalRatingsRepository>()
+                .SingleInstance();
+
+            builder
+                .RegisterType<MongoParticipantRepository>()
+                .As<IParticipantRepository>()
                 .SingleInstance();
         }
     }

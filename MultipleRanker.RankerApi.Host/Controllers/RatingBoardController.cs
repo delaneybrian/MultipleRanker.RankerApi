@@ -13,11 +13,11 @@ namespace MultipleRanker.RankerApi.Host.Controllers
     public class RatingBoardController : Controller
     {
         private readonly IMessagePublisher _messagePublisher;
-        private readonly IRatingsRepository _ratingsRepository;
+        private readonly IRatingBoardRepository _ratingsRepository;
 
         public RatingBoardController(
             IMessagePublisher messagePublisher,
-            IRatingsRepository ratingsRepository)
+            IRatingBoardRepository ratingsRepository)
         {
             _messagePublisher = messagePublisher;
             _ratingsRepository = ratingsRepository;
@@ -80,21 +80,6 @@ namespace MultipleRanker.RankerApi.Host.Controllers
             _messagePublisher.Publish(generateRatingsForRatingBoard, correlationId);
 
             return Created(new Uri("http://www.google.com"), null);
-        }
-
-        [HttpGet]
-        [Route("latest")]
-        public async Task<IActionResult> GetLatestRatings(
-            [FromQuery(Name = "ratingBoardId")] Guid ratingBoardId)
-        {
-            return Ok(await _ratingsRepository.GetLatestRating(ratingBoardId));
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetRatings(
-            [FromQuery(Name = "ratingBoardId")] Guid ratingBoardId)
-        {
-            return Ok(await _ratingsRepository.GetAllRatings(ratingBoardId));
         }
     }
 }

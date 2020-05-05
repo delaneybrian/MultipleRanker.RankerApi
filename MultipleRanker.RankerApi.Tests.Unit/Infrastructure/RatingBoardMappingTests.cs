@@ -95,7 +95,7 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                     SubType = ratingBoardSubType,
                     CreatedAtUtc = _createdOnUtc,
                     CreatedBy = _createdByIdString,
-                    ParticipantEntities = new List<ParticipantEntity>
+                    Participants = new List<ParticipantEntity>
                     {
                         new ParticipantEntity()
                     },
@@ -119,7 +119,7 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                     SubType = ratingBoardSubType,
                     CreatedAtUtc = _createdOnUtc,
                     CreatedBy = _createdByIdGuid,
-                    ParticipantEntities = new List<Participant>
+                    Participants = new List<Participant>
                     {
                         new Participant()
                     },
@@ -154,7 +154,7 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                 Assert.AreEqual(_ratingBoardIdGuid.ToString(), _ratingBoardEntity.Id);
                 Assert.AreEqual(_createdByIdGuid.ToString(), _ratingBoardEntity.CreatedBy);
                 Assert.AreEqual(1, _ratingBoardEntity.RatingLists.Count);
-                Assert.AreEqual(1, _ratingBoardEntity.ParticipantEntities.Count);
+                Assert.AreEqual(1, _ratingBoardEntity.Participants.Count);
                 Assert.AreEqual(expectedRatingBoardType, _ratingBoardEntity.Type);
                 Assert.AreEqual(expectedRatingBoardSubType, _ratingBoardEntity.SubType);
 
@@ -169,7 +169,7 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                 Assert.AreEqual(Guid.Parse(_createdByIdString), _ratingBoard.CreatedBy);
                 Assert.AreEqual(Guid.Parse(_ratingBoardIdString), _ratingBoard.Id);
                 Assert.AreEqual(1, _ratingBoard.RatingLists.Count);
-                Assert.AreEqual(1, _ratingBoardEntity.ParticipantEntities.Count);
+                Assert.AreEqual(1, _ratingBoardEntity.Participants.Count);
                 Assert.AreEqual(expectedRatingBoardType, _ratingBoard.Type);
                 Assert.AreEqual(expectedRatingBoardSubType, _ratingBoard.SubType);
 

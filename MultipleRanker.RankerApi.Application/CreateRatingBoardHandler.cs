@@ -6,16 +6,16 @@ namespace MultipleRanker.RankerApi.Application
 {
     public class CreateRatingBoardHandler : IHandler<CreateRatingBoard>
     {
-        private readonly IRatingsRepository _ratingsRepository;
+        private readonly IRatingBoardRepository _ratingsRepository;
 
-        public CreateRatingBoardHandler(IRatingsRepository ratingsRepository)
+        public CreateRatingBoardHandler(IRatingBoardRepository ratingsRepository)
         {
             _ratingsRepository = ratingsRepository;
         }
 
         public async Task HandleAsync(CreateRatingBoard evt)
         {
-            await _ratingsRepository.AddRatingBoard(evt.Id);
+            //await _ratingsRepository.AddRatingBoard(evt.Id);
         }
     }
 }
