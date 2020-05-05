@@ -28,7 +28,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 cfg.CreateMap<ParticipantRating, ParticipantRatingEntity>();
 
                 cfg.CreateMap<UserEntity, User>();
-                
+
                 cfg.CreateMap<User, UserEntity>();
 
                 cfg.CreateMap<ParticipantEntity, Participant>();
@@ -69,6 +69,36 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
         internal static HistoricalRatings ToHistoricalRatings(this HistoricalRatingsEntity historicalRatingsEntity)
         {
             return _mapper.Map<HistoricalRatings>(historicalRatingsEntity);
+        }
+
+        internal static RatingListEntity ToRatingListEntity(this RatingList ratingList)
+        {
+            return _mapper.Map<RatingListEntity>(ratingList);
+        }
+
+        internal static RatingList ToRatingList(this RatingListEntity ratingListEntity)
+        {
+            return _mapper.Map<RatingList>(ratingListEntity);
+        }
+
+        internal static RatingBoardEntity ToRatingBoardEntity(this RatingBoard ratingBoard)
+        {
+            return _mapper.Map<RatingBoardEntity>(ratingBoard);
+        }
+
+        internal static RatingBoard ToRatingBoard(this RatingBoardEntity ratingBoardEntity)
+        {
+            return _mapper.Map<RatingBoard>(ratingBoardEntity);
+        }
+
+        internal static ParticipantEntity ToParticipantEntity(this Participant participant)
+        {
+            return _mapper.Map<ParticipantEntity>(participant);
+        }
+
+        internal static Participant ToParticipant(this ParticipantEntity participantEntity)
+        {
+            return _mapper.Map<Participant>(participantEntity);
         }
     }
 }
