@@ -50,19 +50,11 @@ namespace MultipleRanker.RankerApi.Host.Controllers
             [FromQuery(Name = "participantName")] string participantName
             )
         {
-            var correlationId = Guid.NewGuid();
-
-            var addParticipantToRatingBoard = new AddParticipantToRatingBoard
-            {
-                RankingBoardId = ratingBoardId,
-                ParticipantId = participantId,
-                ParticipantName = participantName
-            };
-
-            _messagePublisher.Publish(addParticipantToRatingBoard, correlationId);
+            
 
             return Created(new Uri("http://www.localhost:44362/api/ratingboard?ratingBoardId"), null);
         }
+
 
         [HttpPost]
         [Route("generate")]
