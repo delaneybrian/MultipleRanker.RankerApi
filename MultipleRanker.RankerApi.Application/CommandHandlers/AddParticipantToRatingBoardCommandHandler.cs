@@ -9,18 +9,35 @@ namespace MultipleRanker.RankerApi.Application.CommandHandlers
     public class AddParticipantToRatingBoardCommandHandler : AsyncRequestHandler<AddParticipantToRatingBoardCommand>
     {
         private readonly IRatingBoardRepository _ratingBoardRepository;
+        private readonly IParticipantRepository _participantRepository;
+        private readonly IMessagePublisher _messagePublisher;
 
         public AddParticipantToRatingBoardCommandHandler(
-            IRatingBoardRepository ratingBoardRepository)
+            IRatingBoardRepository ratingBoardRepository,
+            IParticipantRepository participantRepository,
+            IMessagePublisher messagePublisher)
         {
             _ratingBoardRepository = ratingBoardRepository;
+            _participantRepository = participantRepository;
+            _messagePublisher = messagePublisher;
         }
 
         protected override async Task Handle(AddParticipantToRatingBoardCommand request, CancellationToken cancellationToken)
         {
+            var participant = await _participantRepository.GetParticipant(request.ParticipantId);
 
+            await _ratingBoardRepository.AddParticipant(request.RatingBoardId, participant);
 
-            await _ratingBoardRepository.AddParticipantToRatingBoard(request.RatingBoardId, request.Participant);
+            var ratingBoard = await _ratingBoardRepository.GetRatingBoard(request.RatingBoardId);
+
+            foreach(var ratingList in ratingBoard.RatingLists)
+            {
+                //await _messagePublisher.Publish(new ParticipantAddedToRatingList 
+                //{
+
+                //}, 
+                //request.CorrelationId);
+            }
         }
     }
 }

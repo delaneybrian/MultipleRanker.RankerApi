@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using MultipleRanker.RankerApi.Definitions;
@@ -26,7 +25,9 @@ namespace MultipleRanker.RankerApi.Application.CommandHandlers
 
         public async Task<Option<string>> Handle(CreateRatingBoardCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _ratingBoardRepository.AddRatingBoard(request.RatingBoard);
+
+            return Option.Some("hello");
         }
     }
 }

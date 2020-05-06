@@ -36,7 +36,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
             }
         }
 
-        public async Task AddParticipantToRatingBoard(Guid ratingBoardId, Participant participant)
+        public async Task AddParticipant(Guid ratingBoardId, Participant participant)
         {
             var filterDefinitionBuilder = new FilterDefinitionBuilder<RatingBoardEntity>();
 
@@ -47,7 +47,7 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 updateDefinitionBuilder.Push(x => x.Participants, participant.ToParticipantEntity()));
         }
 
-        public async Task AddRatingListToRatingBoard(Guid ratingBoardId, RatingList ratingList)
+        public async Task AddRatingList(Guid ratingBoardId, RatingList ratingList)
         {
             var filterDefinitionBuilder = new FilterDefinitionBuilder<RatingBoardEntity>();
 
@@ -56,6 +56,20 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
             await _ratingBoardCollection.FindOneAndUpdateAsync(
                 filterDefinitionBuilder.Eq(x => x.Id, ratingBoardId.ToString()),
                 updateDefinitionBuilder.Push(x => x.RatingLists, ratingList.ToRatingListEntity()));
+        }
+
+        public async Task RemoveRatingList(Guid ratingBoardId, Guid ratingListId)
+        {
+            var ratingBoardFilterDefinitionBuilder = new FilterDefinitionBuilder<RatingBoardEntity>();
+
+            var ratingBoardUpdateDefinitionBuilder = new UpdateDefinitionBuilder<RatingBoardEntity>();
+
+            var ratingListFilterDefinitionBuilder = new FilterDefinitionBuilder<RatingListEntity>();
+
+            await _ratingBoardCollection.FindOneAndUpdateAsync(
+                 ratingBoardFilterDefinitionBuilder.Eq(x => x.Id, ratingBoardId.ToString()),
+                 ratingBoardUpdateDefinitionBuilder.PullFilter(x => x.RatingLists,
+                 ratingListFilterDefinitionBuilder.Eq(x => x.Id, ratingListId.ToString())));
         }
 
         public async Task<RatingBoard> GetRatingBoard(Guid ratingBoardId)
@@ -67,6 +81,28 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 .SingleAsync();
 
             return ratingBoardEntity.ToRatingBoard();
+        }
+
+        public async Task RemoveParticipant(Guid ratingBoardId, Guid participantId)
+        {
+            var ratingBoardFilterDefinitionBuilder = new FilterDefinitionBuilder<RatingBoardEntity>();
+
+            var ratingBoardUpdateDefinitionBuilder = new UpdateDefinitionBuilder<RatingBoardEntity>();
+
+            var participantFilterDefinitionBuilder = new FilterDefinitionBuilder<ParticipantEntity>();
+
+            await _ratingBoardCollection.FindOneAndUpdateAsync(
+                 ratingBoardFilterDefinitionBuilder.Eq(x => x.Id, ratingBoardId.ToString()),
+                 ratingBoardUpdateDefinitionBuilder.PullFilter(x => x.Participants,
+                 participantFilterDefinitionBuilder.Eq(x => x.Id, participantId.ToString())));
+        }
+
+        public async Task DeleteRatingBoard(Guid ratingBoardId)
+        {
+            var filterDefinitionBuilder = new FilterDefinitionBuilder<RatingBoardEntity>();
+
+            await _ratingBoardCollection.FindOneAndDeleteAsync(
+                filterDefinitionBuilder.Eq(x => x.Id, ratingBoardId.ToString()));
         }
     }
 }

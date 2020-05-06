@@ -1,10 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using MediatR;
 
 namespace MultipleRanker.RankerApi.Definitions
 {
-    class DeleteRatingBoardCommand
+    public class DeleteRatingBoardCommand : IRequest
     {
+        public DeleteRatingBoardCommand(
+            Guid ratingBoardId,
+            Guid correlationId)
+        {
+            RatingBoardId = ratingBoardId;
+            CorrelationId = correlationId;
+        }
+
+        public Guid CorrelationId { get; }
+
+        public Guid RatingBoardId { get; }
     }
 }

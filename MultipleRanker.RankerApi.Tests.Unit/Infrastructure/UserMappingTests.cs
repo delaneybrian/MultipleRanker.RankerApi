@@ -19,7 +19,7 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
             _context
                 .SetName("Test")
                 .SetUserId(Guid.NewGuid().ToString())
-                .ArrangeUser()
+                .ArrangeUserEntity()
                 .MapToUserEntity();
 
         [Test]

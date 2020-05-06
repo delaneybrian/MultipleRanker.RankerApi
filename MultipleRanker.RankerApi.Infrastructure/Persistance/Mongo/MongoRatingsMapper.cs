@@ -34,6 +34,14 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
                 cfg.CreateMap<ParticipantEntity, Participant>();
 
                 cfg.CreateMap<Participant, ParticipantEntity>();
+
+                cfg.CreateMap<ParticipantResultEntity, ParticipantResult>();
+
+                cfg.CreateMap<ParticipantResult, ParticipantResultEntity>();
+
+                cfg.CreateMap<ResultEntity, Result>();
+
+                cfg.CreateMap<Result, ResultEntity>();
             });
 
             config.AssertConfigurationIsValid();
@@ -99,6 +107,26 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
         internal static Participant ToParticipant(this ParticipantEntity participantEntity)
         {
             return _mapper.Map<Participant>(participantEntity);
+        }
+
+        internal static ParticipantResultEntity ToParticipantResultEntity(this ParticipantResult participantResult)
+        {
+            return _mapper.Map<ParticipantResultEntity>(participantResult);
+        }
+
+        internal static ParticipantResult ToParticipantResult(this ParticipantResultEntity participantResultEntity)
+        {
+            return _mapper.Map<ParticipantResult>(participantResultEntity);
+        }
+
+        internal static ResultEntity ToResultEntity(this Result result)
+        {
+            return _mapper.Map<ResultEntity>(result);
+        }
+
+        internal static Result ToResult(this ResultEntity resultEntity)
+        {
+            return _mapper.Map<Result>(resultEntity);
         }
     }
 }
