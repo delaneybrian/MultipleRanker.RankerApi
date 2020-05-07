@@ -1,9 +1,9 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using MultipleRanker.RankerApi.Contracts;
+using MultipleRanker.RankerApi.Definitions.Commands;
 
 namespace MultipleRanker.RankerApi.Host.Controllers
 {
@@ -19,14 +19,32 @@ namespace MultipleRanker.RankerApi.Host.Controllers
             _mediator = mediator;
         }
 
-        public async Task AddResult()
+        [HttpPost]
+        [Route("/add")]
+        public async Task AddResults(
+            [FromBody] AddResultsDto addResultsDto)
         {
-            throw new NotImplementedException();
+            var correlationId = Guid.NewGuid();
+
+            await _mediator.Send(
+                new AddResultsCommand(
+                    addResultsDto.RatingBoardIdsToApply, 
+                    addResultsDto.ParticipantResults, 
+                    correlationId));
         }
 
-        public async Task RemoveResult()
+        [HttpPost]
+        [Route("/remove")]
+        public async Task RemoveResults(
+            [FromBody] RemoveResultsDto removeResultsDto)
         {
-            throw new NotImplementedException();
+            var correlationId = Guid.NewGuid();
+
+            await _mediator.Send(
+                new RemoveResultsCommand(
+                    removeResultsDto.ResultId, 
+                    removeResultsDto.RatingBoardIdsToRemove, 
+                    correlationId));
         }
     }
 }

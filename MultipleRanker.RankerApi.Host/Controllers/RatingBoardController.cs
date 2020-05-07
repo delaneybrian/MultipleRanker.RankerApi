@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MultipleRanker.Contracts;
-using MultipleRanker.Contracts.Messages;
-using MultipleRanker.RankerApi.Interfaces;
+using MultipleRanker.RankerApi.Contracts;
+using MultipleRanker.RankerApi.Definitions;
+using MultipleRanker.RankerApi.Definitions.Commands;
 
 namespace MultipleRanker.RankerApi.Host.Controllers
 {
@@ -12,47 +13,41 @@ namespace MultipleRanker.RankerApi.Host.Controllers
     [Route("api/[controller]")]
     public class RatingBoardController : Controller
     {
-        private readonly IMessagePublisher _messagePublisher;
-        private readonly IRatingBoardRepository _ratingsRepository;
+        private readonly IMediator _mediator;
 
         public RatingBoardController(
-            IMessagePublisher messagePublisher,
-            IRatingBoardRepository ratingsRepository)
+            IMediator mediator)
         {
-            _messagePublisher = messagePublisher;
-            _ratingsRepository = ratingsRepository;
+            _mediator = mediator;
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateRatingBoard(
-            [FromQuery(Name = "name")] string name)
+            [FromBody] CreateRatingBoardDto createRatingBoardDto)
         {
-            var id = Guid.NewGuid();
-
             var correlationId = Guid.NewGuid();
 
-            var createRatingBoard = new CreateRatingBoard
-            {
-                Id = id,
-                Name = name
-            };
+            await _mediator.Send(createRatingBoardDto.ToCommand(correlationId));
 
-            _messagePublisher.Publish(createRatingBoard, correlationId);
-
-            return Created(new Uri($@"https://www.localhost:44362/api/ratingboard?ratingBoardId={id}"), null);
+            return Created(new Uri(""), null);
         }
 
         [HttpPost]
         [Route("addparticipant")]
         public async Task<IActionResult> AddParticipantToRatingBoard(
             [FromQuery(Name = "ratingBoardId")] Guid ratingBoardId,
-            [FromQuery(Name = "participantId")] Guid participantId,
-            [FromQuery(Name = "participantName")] string participantName
+            [FromQuery(Name = "participantId")] Guid participantId
             )
         {
-            
+            var correlationId = Guid.NewGuid();
 
-            return Created(new Uri("http://www.localhost:44362/api/ratingboard?ratingBoardId"), null);
+            await _mediator.Send(
+                new AddParticipantToRatingBoardCommand(
+                    ratingBoardId, 
+                    participantId, 
+                    correlationId));
+
+            return Created(new Uri(""), null);
         }
 
 
@@ -63,15 +58,9 @@ namespace MultipleRanker.RankerApi.Host.Controllers
         {
             var correlationId = Guid.NewGuid();
 
-            var generateRatingsForRatingBoard = new GenerateRatingsForRatingBoard
-            {
-                RatingBoardId = ratingBoardId,
-                RatingType = RatingType.OffensiveDefensive,
-            };
-
-            _messagePublisher.Publish(generateRatingsForRatingBoard, correlationId);
-
-            return Created(new Uri("http://www.google.com"), null);
+            await _mediator.Send(new GenerateRatingsCommand(ratingBoardId, correlationId));
+         
+            return Created(new Uri(""), null);
         }
     }
 }

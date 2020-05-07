@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using MultipleRanker.RankerApi.Contracts.Dto;
 using MultipleRanker.RankerApi.Definitions;
 using MultipleRanker.RankerApi.Interfaces;
 
@@ -32,11 +33,12 @@ namespace MultipleRanker.RankerApi.Application.CommandHandlers
 
             foreach(var ratingList in ratingBoard.RatingLists)
             {
-                //await _messagePublisher.Publish(new ParticipantAddedToRatingList 
-                //{
-
-                //}, 
-                //request.CorrelationId);
+                _messagePublisher.Publish(new ParticipantAddedToRatingList 
+                {
+                    RatingListId = ratingList.Id,
+                    ParticipantId = request.ParticipantId
+                },
+                request.CorrelationId);
             }
         }
     }

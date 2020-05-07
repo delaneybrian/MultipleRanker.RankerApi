@@ -6,19 +6,20 @@ namespace MultipleRanker.RankerApi.Definitions
     public class AddParticipantToRatingBoardCommand : IRequest
     {
         public AddParticipantToRatingBoardCommand(
-            Guid correlationId,
             Guid ratingBoardId,
-            Guid participantId)
+            Guid participantId,
+            Guid correlationId)
         {
-            CorrelationId = correlationId;
             RatingBoardId = ratingBoardId;
             ParticipantId = participantId;
+            CorrelationId = correlationId;
         }
-
-        public Guid CorrelationId { get; }
 
         public Guid RatingBoardId { get; }
 
         public Guid ParticipantId { get; }
+
+        public Guid CorrelationId { get; }
+
     }
 }
