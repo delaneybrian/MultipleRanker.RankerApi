@@ -49,8 +49,7 @@ namespace MultipleRanker.RankerApi.Host.Controllers
 
             return Created(new Uri(""), null);
         }
-
-
+   
         [HttpPost]
         [Route("generate")]
         public async Task<IActionResult> GenerateRatingsForRatingBoard(
