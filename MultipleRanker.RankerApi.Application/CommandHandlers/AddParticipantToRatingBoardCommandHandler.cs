@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MultipleRanker.RankerApi.Contracts.Dto;
+using MultipleRanker.RankerApi.Contracts.Events;
 using MultipleRanker.RankerApi.Definitions;
 using MultipleRanker.RankerApi.Interfaces;
 
