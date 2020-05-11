@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -13,6 +14,9 @@ namespace MultipleRanker.RankerApi.Infrastructure.Persistance.Mongo
 
         [DataMember]
         public ICollection<ParticipantResultEntity> ParticipantResults { get; set; }
+
+        [DataMember]
+        public DateTime ResultTimeUtc { get; set; }
 
         [DataMember]
         public ICollection<string> RatingBoardIdsAppliedTo { get; set; }

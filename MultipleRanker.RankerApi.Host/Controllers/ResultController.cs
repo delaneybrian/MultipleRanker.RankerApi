@@ -30,6 +30,7 @@ namespace MultipleRanker.RankerApi.Host.Controllers
                 new AddResultsCommand(
                     addResultsDto.RatingBoardIdsToApply, 
                     addResultsDto.ParticipantResults, 
+                    addResultsDto.ResultTimeUtc,
                     correlationId));
         }
 

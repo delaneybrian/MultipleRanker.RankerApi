@@ -11,6 +11,9 @@ namespace MultipleRanker.RankerApi.Contracts
         public ICollection<Guid> RatingBoardIdsToApply { get; set; }
 
         [DataMember]
+        public DateTime ResultTimeUtc { get; set; }
+
+        [DataMember]
         public ICollection<ParticipantResult> ParticipantResults { get; set; }
     }
 }

@@ -37,10 +37,18 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
 
             private string _resultIdString;
             private Guid _resultIdGuid;
-        
+            private DateTime _resultTimeUtc;
+
             public TestContext SetResultId(string result)
             {
                 _resultIdString = result;
+
+                return this;
+            }
+
+            public TestContext SetResultTime(DateTime resultTimeUtc)
+            {
+                _resultTimeUtc = resultTimeUtc;
 
                 return this;
             }
@@ -64,7 +72,8 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                     RatingBoardIdsAppliedTo = new List<Guid>
                     {
                         Guid.NewGuid()
-                    }
+                    },
+                    ResultTimeUtc = _resultTimeUtc
                 };
 
                 return this;
@@ -81,7 +90,8 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                     RatingBoardIdsAppliedTo = new List<string>
                     {
                         Guid.NewGuid().ToString()
-                    }
+                    },
+                    ResultTimeUtc = _resultTimeUtc
                 };
 
                 return this;
@@ -106,6 +116,7 @@ namespace MultipleRanker.RankerApi.Tests.Unit.Infrastructure
                 Assert.AreEqual(_result.Id.ToString(), _resultEntity.Id);
                 Assert.AreEqual(_result.ParticipantResults.Count, _resultEntity.ParticipantResults.Count);
                 Assert.AreEqual(_result.RatingBoardIdsAppliedTo.Count, _resultEntity.RatingBoardIdsAppliedTo.Count);
+                Assert.AreEqual(_result.ResultTimeUtc, _resultEntity.ResultTimeUtc);
 
                 return this;
             }        

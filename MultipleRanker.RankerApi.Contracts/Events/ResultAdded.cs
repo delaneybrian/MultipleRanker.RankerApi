@@ -14,6 +14,9 @@ namespace MultipleRanker.RankerApi.Contracts.Events
         public Guid RatingListId { get; set; }
 
         [DataMember]
+        public DateTime ResultTimeUtc { get; set; }
+
+        [DataMember]
         public ICollection<ParticipantResult> ParticipantResults { get; set; }
     }
 }

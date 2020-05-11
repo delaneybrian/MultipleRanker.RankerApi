@@ -47,6 +47,7 @@ namespace MultipleRanker.RankerApi.Application.CommandHandlers
                         {
                             RatingListId = ratingList.Id,
                             ResultId = resultId,
+                            ResultTimeUtc = request.ResultTimeUtc,
                             ParticipantResults = request.ParticipantResults
                         },
                         request.CorrelationId);
